@@ -20,6 +20,7 @@ const UserSchema = new mongoose.Schema({
 
     type: String,
     required: [true, 'Please specify the User email.'],
+    unique: true
   },
   hash: {
     type: String,

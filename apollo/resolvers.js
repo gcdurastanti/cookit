@@ -10,7 +10,7 @@ export const resolvers = {
         const session = await getLoginSession(context.req)
 
         if (session) {
-          return findUser({ email: session.email })
+          return await findUser({ email: session.email })
         }
       } catch (error) {
         throw new AuthenticationError(

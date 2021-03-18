@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { gql, useQuery } from '@apollo/client';
+import { }
 
 const RecipesQuery = gql`
   query RecipesQuery {
@@ -23,7 +24,7 @@ const ViewerQuery = gql`
 
 const Manage = () => {
   const router = useRouter();
-  const { data, loading, error } = useQuery(RecipeQuery);
+  const { data, loading, error } = useQuery(RecipesQuery);
   const { viewerData, loading2, error2 } = useQuery(ViewerQuery);
   if (error) {
     return <p>{error.message}</p>;
@@ -31,24 +32,28 @@ const Manage = () => {
 
   if (data) {
     return (
-      <div>
-        <Link href="/">
-          <a>home</a>
-        </Link>
-        <Link href="/about">
-          <a>about</a>
-        </Link>
-        <Link href="/signout">
-          <a>signout</a>
-        </Link>
-      </div>
-      <h3>{`Hey ${viewerData?.name}`}</h3>
-      <div>
-        {data?.recipes?.map(recipe => {
-          <div>{recipe.name}</div>
-          <div>{recipe.description}</div>
-        })}
-      </div>
+      <>
+        <div>
+          <Link href="/">
+            <a>home</a>
+          </Link>
+          <Link href="/about">
+            <a>about</a>
+          </Link>
+          <Link href="/signout">
+            <a>signout</a>
+          </Link>
+        </div>
+        <h3>{`Hey ${viewerData?.email}`}</h3>
+        <div>
+          {data?.recipes?.map((recipe) => {
+            <>
+              <div>{recipe.name}</div>
+              <div>{recipe.description}</div>
+            </>;
+          })}
+        </div>
+      </>
     );
   }
 

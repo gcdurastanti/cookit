@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { gql, useQuery } from '@apollo/client';
 
+import NavBar from '../components/NavBar';
+
 const ViewerQuery = gql`
   query ViewerQuery {
     viewer {
@@ -32,17 +34,20 @@ const Index = () => {
   if (viewer) {
     return (
       <div>
-        You're signed in as {viewer.email} goto{' '}
-        <Link href="/about">
-          <a>about</a>
-        </Link>{' '}
-        page. or{' '}
-        <Link href="/signout">
-          <a>signout</a>
-        </Link>
-        <Link href="/manage">
-          <a>manage</a>
-        </Link>
+        <NavBar />
+        <div>
+          You're signed in as {viewer.email} goto{' '}
+          <Link href="/about">
+            <a>about</a>
+          </Link>{' '}
+          page. or{' '}
+          <Link href="/signout">
+            <a>signout</a>
+          </Link>
+          <Link href="/manage">
+            <a>manage</a>
+          </Link>
+        </div>
       </div>
     );
   }

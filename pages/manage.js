@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { gql, useQuery } from '@apollo/client';
 
+import NavBar from '../components/NavBar';
+
 const RecipesQuery = gql`
   query RecipesQuery {
     recipes {
@@ -32,6 +34,7 @@ const Manage = () => {
   if (data) {
     return (
       <>
+        <NavBar />
         <div>
           <Link href="/">
             <a>home</a>

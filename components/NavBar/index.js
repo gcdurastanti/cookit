@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Link from 'next/link';
+import Image from 'next/image';
+import NavLink from './NavLink';
+import Logo from '../Logo';
 
 const NavBarContainer = styled.div`
   display: flex;
@@ -10,24 +12,37 @@ const NavBarContainer = styled.div`
   border-bottom: 1px solid #c7cccf;
   transition: border 150ms ease;
   align-items: center;
+  font-family: Signika, Arial, Helvetica, sans-serif
 
   &:hover {
     border-bottom-color: #a4a9ab;
   }
+
+  a {
+    color: black;
+  }
 `;
 
-const NavLink = styled.div`
-  color: #373a3c;
-  padding: 1rem 1rem;
+const Divider = styled.div`
+  height: 70%;
+  width: 1px;
+  border: 1px solid #c7cccf;
+  margin: 0 1rem;
 `;
 
-const routes = ['Home', 'About', 'Manage'];
+const routes = [
+  { route: '/', display: 'Home' },
+  { route: '/manage', display: 'Manage' },
+  { route: 'about', display: 'About' },
+];
 
 const NavBar = () => {
   return (
     <NavBarContainer>
-      {routes.map((route) => (
-        <NavLink>{<Link href={`/${route.toLowerCase()}`}>{route}</Link>}</NavLink>
+      <Logo />
+      <Divider />
+      {routes.map(({ route, display }) => (
+        <NavLink href={route}>{display}</NavLink>
       ))}
     </NavBarContainer>
   );
